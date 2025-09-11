@@ -1,0 +1,29 @@
+function doGet(e) {
+  sendMessage(e);
+}
+
+function doPost(e) { 
+  sendMessage(e);
+}
+
+function sendMessage(e) {
+  const pushoverYou = "< *** your pushover gateway email goes here *** >";
+
+  // var ev = e.parameter.event;
+  // var eventTxt = e.parameter.data;
+
+  var subject = "Mailbox Opened";
+  var tmStamp = computeLocalTime();
+  var body = subject + " at: " + tmStamp;
+
+  GmailApp.sendEmail(pushoverYou, subject, body);
+
+}
+ 
+
+function computeLocalTime() {
+  
+  var formattedDate = Utilities.formatDate(new Date(), "America/Los_Angeles", "yyyy-MM-dd' 'HH:mm:ss");
+  return formattedDate;
+  
+}  
